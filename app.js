@@ -435,10 +435,15 @@ function handleConnect(e) {
 // Connections View
 function updateConnectionsView() {
     if (connections.length === 0) {
-        connectionsContainer.innerHTML = '<p class="empty-state">No connections yet. Start browsing to connect with peers!</p>';
+        connectionsContainer.innerHTML = `<p class="empty-state">
+                                    <i class="fas fa-user-friends"></i>
+                                    No connections yet. Start browsing to connect with peers!
+                                </p>`;
+        connectionsContainer.style.gridTemplateColumns = '1fr';
         return;
     }
-
+    connectionsContainer.style.gridTemplateColumns = 'repeat(auto-fill, minmax(300px, 1fr))';
+    
     connectionsContainer.innerHTML = '';
 
     connections.forEach(student => {
@@ -548,6 +553,7 @@ function handleDeleteConnection(e) {
         
         // Update dashboard stats
         updateDashboardStats();
+        displayStudents(filteredStudents)
     }
 }
 
@@ -1469,9 +1475,11 @@ function updateConnectionCounts() {
 function displayPendingRequests() {
     if (pendingRequests.length === 0) {
         pendingConnectionsContainer.innerHTML = '<p class="empty-state"><i class="fas fa-paper-plane"></i>No pending connection requests</p>';
+        pendingConnectionsContainer.style.gridTemplateColumns = '1fr';
         return;
     }
 
+    pendingConnectionsContainer.style.gridTemplateColumns = 'repeat(auto-fill, minmax(300px, 1fr))';
     pendingConnectionsContainer.innerHTML = '';
 
     pendingRequests.forEach(request => {

@@ -567,6 +567,7 @@ a:hover {
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    padding: 48px 0;
 }
 
 .welcome-image {
