@@ -1,4 +1,3 @@
-/* ========== BASE STYLES & DESIGN SYSTEM ========== */
 :root {
     --primary-gradient: linear-gradient(135deg, #667eea 0%, #5b4ba2 100%);
     /* Primary palette */
@@ -35,7 +34,7 @@
     --transition-normal: 300ms ease;
     --transition-slow: 500ms ease;
 
-    /* Spacing system (in rems) */
+    /* Spacing system */
     --space-1: 0.25rem;
     --space-2: 0.5rem;
     --space-3: 0.75rem;
@@ -65,7 +64,7 @@
     --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
     --card-hover-shadow: 0 10px 15px rgba(0, 0, 0, 0.4), 0 4px 6px rgba(0, 0, 0, 0.3);
 
-    /* Adjusted state colors for dark mode */
+    /* state colors for dark mode */
     --success-light: rgba(56, 176, 0, 0.2);
     --warning-light: rgba(245, 158, 11, 0.2);
     --error-light: rgba(229, 56, 59, 0.2);
@@ -175,7 +174,6 @@ a:hover {
     display: none !important;
 }
 
-/* ========== APP LAYOUT ========== */
 /* App Container */
 .app-container {
     display: flex;
@@ -487,7 +485,6 @@ a:hover {
     font-weight: 500;
 }
 
-/* ========== COMPONENTS ========== */
 /* Buttons */
 .btn {
     display: inline-flex;
@@ -1299,8 +1296,6 @@ textarea {
     border-color: var(--dark-border);
 }
 
-/* ========== COMPONENT STYLES (continued) ========== */
-
 /* Student Card */
 .student-card {
     background-color: var(--background-white);
@@ -1668,7 +1663,6 @@ textarea {
     }
 }
 
-/* ========== ANIMATIONS ========== */
 @keyframes slideInRight {
     from {
         transform: translateX(-100%);
@@ -1715,13 +1709,6 @@ textarea {
     }
 }
 
-/* ========== ACCESSIBILITY FOCUS STYLES ========== */
-*:focus-visible {
-    outline: 3px solid var(--primary-color);
-    outline-offset: 2px;
-}
-
-/* Skip to content link for keyboard users */
 .skip-link {
     position: absolute;
     top: -40px;
@@ -1737,9 +1724,7 @@ textarea {
     top: 0;
 }
 
-/* ========== RESPONSIVE STYLES ========== */
 @media (min-width: 1024px) {
-
     /* Desktop Styles */
     .welcome-message {
         flex-direction: row;
@@ -1751,7 +1736,6 @@ textarea {
 }
 
 @media (max-width: 1023px) {
-
     /* Tablet Styles */
     .sidebar {
         transform: translateX(-100%);
@@ -1787,7 +1771,6 @@ textarea {
 }
 
 @media (max-width: 768px) {
-
     /* Small Tablet / Large Mobile Styles */
     .content-wrapper {
         padding: var(--space-4);
@@ -1857,15 +1840,9 @@ textarea {
         gap: 24px;
     }
 
-    /* .connections-stats {
-        flex-direction: column;
-        align-items: center;
-        gap: var(--space-5);
-    } */
 }
 
 @media (max-width: 576px) {
-
     /* Mobile Styles */
     .topbar {
         padding: 0 var(--space-3);
@@ -2081,12 +2058,10 @@ textarea {
     }
 }
 
-/* ========== DARK MODE TRANSITION ========== */
 .dark-mode-transition {
     transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
 }
 
-/* ========== PRINT STYLES ========== */
 @media print {
 
     .sidebar,
@@ -2117,63 +2092,5 @@ textarea {
         break-inside: avoid;
         box-shadow: none;
         border: 1px solid #ddd;
-    }
-}
-
-/* Add high contrast styles for accessibility */
-@media (prefers-contrast: high) {
-    :root {
-        --primary-color: #0000FF;
-        --primary-light: #0000FF;
-        --primary-dark: #0000AA;
-        --text-dark: #000000;
-        --text-light: #222222;
-        --text-lighter: #444444;
-        --background-light: #FFFFFF;
-        --background-white: #FFFFFF;
-        --border-color: #000000;
-        --card-shadow: none;
-        --card-hover-shadow: none;
-    }
-
-    .dark-mode {
-        --text-dark: #FFFFFF;
-        --text-light: #EEEEEE;
-        --text-lighter: #DDDDDD;
-        --background-light: #000000;
-        --background-white: #111111;
-        --border-color: #FFFFFF;
-    }
-
-    * {
-        text-shadow: none !important;
-    }
-
-    .btn,
-    .nav-link,
-    .tab-button,
-    .tag {
-        border: 2px solid currentColor;
-    }
-}
-
-/* ========== REDUCED MOTION ========== */
-@media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
-
-    .welcome-message:hover,
-    .student-card:hover,
-    .connection-card:hover,
-    .stat-card:hover,
-    .dashboard-card:hover {
-        transform: none !important;
     }
 }
