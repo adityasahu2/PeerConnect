@@ -1652,5 +1652,5 @@ function initializeConnectionsPage() {
 initializeConnectionsPage();
 
 document.getElementById('index').addEventListener('click', () => {
-    window.location.href = 'index.html';
+    window.location.href = 'StudentVerse/index.html';
 });
