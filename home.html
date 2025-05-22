@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentVerse - Connect with Peers</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="description" content="StudentVerse - Connect with peers, find study groups, and collaborate on projects">
+</head>
+<body class="light-mode">
+    <div class="app-container">
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo" id="index">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h1>StudentVerse</h1>
+                </div>
+                <button id="close-sidebar" class="icon-btn sidebar-toggle" aria-label="Close sidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li>
+                        <a href="#" class="nav-link active" data-tab="dashboard">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" data-tab="profile">
+                            <i class="fas fa-user"></i>
+                            <span>My Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" data-tab="browse">
+                            <i class="fas fa-search"></i>
+                            <span>Browse Students</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" data-tab="connections">
+                            <i class="fas fa-user-friends"></i>
+                            <span>My Connections</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="theme-toggle-container">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                    <span>Dark Mode</span>
+                </button>
+            </div>
+        </aside>
+        
+        <div class="main-content">
+            <header class="topbar">
+                <button id="toggle-sidebar" class="icon-btn sidebar-toggle" aria-label="Toggle sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search StudentVerse..." aria-label="Search StudentVerse">
+                </div>
+                <div class="topbar-right">
+                    <button class="icon-btn" aria-label="Notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">2</span>
+                    </button>
+                    <div class="user-info">
+                        <div id="topbar-profile-picture" class="profile-picture-small">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <section id="welcome-section">
+                    <div class="welcome-message" id="welcome-message">
+                        <div class="welcome-graphic">
+                            <img src="/api/placeholder/400/320" alt="Welcome to StudentVerse illustration" class="welcome-image">
+                        </div>
+                        <div class="welcome-text">
+                            <h2>Welcome to StudentVerse</h2>
+                            <p>Connect with peers, find study groups, and collaborate on exciting projects. Create your profile to get started!</p>
+                            <button id="create-profile-btn" class="btn btn-primary btn-with-icon">
+                                <i class="fas fa-user-plus"></i>
+                                <span>Create Profile</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Dashboard Tab -->
+                <section id="dashboard" class="tab-content hidden">
+                    <div class="content-header">
+                        <h2>Dashboard</h2>
+                        <div class="date-display">May 21, 2025</div>
+                    </div>
+                    <div class="dashboard-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-details">
+                                <h3>Connections</h3>
+                                <p id="connections-count" class="stat-value">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="stat-details">
+                                <h3>Skills Matched</h3>
+                                <p id="skills-matched" class="stat-value">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <div class="stat-details">
+                                <h3>Project Tags</h3>
+                                <p id="project-tags" class="stat-value">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-history"></i> Recent Activity</h3>
+                            </div>
+                            <div class="card-body">
+                                <div id="recent-activity" class="activity-list">
+                                    <p class="empty-state">
+                                        <i class="fas fa-inbox"></i>
+                                        No recent activity
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-user-plus"></i> Suggested Connections</h3>
+                            </div>
+                            <div class="card-body">
+                                <div id="suggested-connections" class="suggested-connections">
+                                    <p class="empty-state">
+                                        <i class="fas fa-user-friends"></i>
+                                        Create your profile to see suggestions
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Profile Tab -->
+                <section id="profile" class="tab-content hidden">
+                    <div class="content-header">
+                        <h2>My Profile</h2>
+                    </div>
+                    
+                    <div class="profile-container">
+                        <div id="profile-view" class="hidden">
+                            <div class="profile-header">
+                                <div class="profile-header-main">
+                                    <div class="profile-picture" id="profile-picture-display">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <div class="profile-info">
+                                        <h3 id="profile-name">Your Name</h3>
+                                        <p id="profile-year-dept">Year - Department</p>
+                                    </div>
+                                </div>
+                                <button id="edit-profile-btn" class="btn btn-outline btn-with-icon">
+                                    <i class="fas fa-edit"></i>
+                                    <span>Edit Profile</span>
+                                </button>
+                            </div>
+                            
+                            <div class="profile-tabs">
+                                <button class="profile-tab active" data-target="about">About</button>
+                                <button class="profile-tab" data-target="skills">Skills & Interests</button>
+                                <button class="profile-tab" data-target="projects">Projects</button>
+                            </div>
+
+                            <div class="profile-tab-content">
+                                <div id="about-content" class="profile-tab-pane active">
+                                    <div>
+                                        <h3>About Me</h3>
+                                    <p id="profile-bio">No bio added yet.</p>
+                                    </div>
+                                </div>
+                                
+                                <div id="skills-content" class="profile-tab-pane">
+                                    <div>
+                                        <h3>Skills & Interests</h3>
+                                    <div id="profile-skills" class="tag-container"></div>
+                                    </div>
+                                </div>
+                                
+                                <div id="projects-content" class="profile-tab-pane">
+                                   <div>
+                                     <h3>Project Areas</h3>
+                                    <div id="profile-projects" class="tag-container"></div>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="profile-form-container">
+                            <div class="form-card">
+                                <h3>Create Your Profile</h3>
+                                <form id="profile-form">
+                                    <div class="form-group">
+                                        <label for="name">Full Name</label>
+                                        <div class="input-with-icon">
+                                            <i class="fas fa-user"></i>
+                                            <input type="text" id="name" name="name" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="college-id">College ID</label>
+                                        <div class="input-with-icon">
+                                            <i class="fas fa-id-card"></i>
+                                            <input type="text" id="college-id" name="collegeId" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="year">Year</label>
+                                            <div class="select-wrapper">
+                                                <select id="year" name="year" required>
+                                                    <option value="">Select Year</option>
+                                                    <option value="Freshman">Freshman</option>
+                                                    <option value="Sophomore">Sophomore</option>
+                                                    <option value="Junior">Junior</option>
+                                                    <option value="Senior">Senior</option>
+                                                    <option value="Graduate">Graduate</option>
+                                                </select>
+                                                <i class="fas fa-chevron-down"></i>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="department">Department</label>
+                                            <div class="select-wrapper">
+                                                <select id="department" name="department" required>
+                                                    <option value="">Select Department</option>
+                                                    <option value="Computer Science">Computer Science</option>
+                                                    <option value="Engineering">Engineering</option>
+                                                    <option value="Business">Business</option>
+                                                    <option value="Arts">Arts</option>
+                                                    <option value="Sciences">Sciences</option>
+                                                    <option value="Humanities">Humanities</option>
+                                                    <option value="Medicine">Medicine</option>
+                                                </select>
+                                                <i class="fas fa-chevron-down"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="profile-picture">Profile Picture</label>
+                                        <div class="file-upload">
+                                            <input type="file" id="profile-picture" name="profilePicture" accept="image/*">
+                                            <div class="file-upload-btn">
+                                                <i class="fas fa-upload"></i>
+                                                <span>Choose a file</span>
+                                            </div>
+                                            <div class="file-name">No file chosen</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bio">Bio</label>
+                                        <textarea id="bio" name="bio" rows="3" placeholder="Tell us about yourself..."></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="skills">Skills & Interests</label>
+                                        <div class="input-with-icon">
+                                            <i class="fas fa-lightbulb"></i>
+                                            <input type="text" id="skills" name="skills" placeholder="e.g., Programming, Design, Research (comma separated)">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="projects">Project Areas</label>
+                                        <div class="input-with-icon">
+                                            <i class="fas fa-project-diagram"></i>
+                                            <input type="text" id="projects" name="projects" placeholder="e.g., Web Development, AI, Robotics (comma separated)">
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="submit" class="btn btn-primary btn-with-icon">
+                                            <i class="fas fa-save"></i>
+                                            <span>Save Profile</span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Browse Students Tab -->
+                <section id="browse" class="tab-content hidden">
+                    <div class="content-header">
+                        <h2>Browse Students</h2>
+                    </div>
+                    
+                    <div class="browse-filters">
+                        <div class="search-container">
+                            <div class="input-with-icon">
+                                <i class="fas fa-search"></i>
+                                <input type="text" id="student-search" placeholder="Search by name, skill, or department...">
+                            </div>
+                            <button id="search-btn" class="btn btn-primary">Search</button>
+                            <div class="filter-toggle">
+                                <button id="toggle-filters" class="btn btn-outline btn-with-icon">
+                                    <i class="fas fa-filter"></i>
+                                    <span>Filters</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        
+                        <div id="advanced-filters" class="advanced-filters">
+                            <div class="filter-group">
+                                <label for="filter-department">Department</label>
+                                <div class="select-wrapper">
+                                    <select id="filter-department">
+                                        <option value="">All Departments</option>
+                                        <option value="Computer Science">Computer Science</option>
+                                        <option value="Engineering">Engineering</option>
+                                        <option value="Business">Business</option>
+                                        <option value="Arts">Arts</option>
+                                        <option value="Sciences">Sciences</option>
+                                        <option value="Humanities">Humanities</option>
+                                        <option value="Medicine">Medicine</option>
+                                    </select>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                            </div>
+                            <div class="filter-group">
+                                <label for="filter-year">Year</label>
+                                <div class="select-wrapper">
+                                    <select id="filter-year">
+                                        <option value="">All Years</option>
+                                        <option value="Freshman">Freshman</option>
+                                        <option value="Sophomore">Sophomore</option>
+                                        <option value="Junior">Junior</option>
+                                        <option value="Senior">Senior</option>
+                                        <option value="Graduate">Graduate</option>
+                                    </select>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                            </div>
+                            <div class="filter-group">
+                                <label for="filter-interests">Interest</label>
+                                <div class="select-wrapper">
+                                    <select id="filter-interests">
+                                        <option value="">All Interests</option>
+                                        <option value="Programming">Programming</option>
+                                        <option value="Design">Design</option>
+                                        <option value="Research">Research</option>
+                                        <option value="Marketing">Marketing</option>
+                                        <option value="Leadership">Leadership</option>
+                                        <option value="Writing">Writing</option>
+                                        <option value="Music">Music</option>
+                                        <option value="Sports">Sports</option>
+                                    </select>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                            </div>
+                            <button id="clear-filters" class="btn btn-outline btn-sm">Clear Filters</button>
+                        </div>
+                    </div>
+                    
+                    <div class="loader-container" id="students-loader">
+                        <div class="loader"></div>
+                        <p>Loading students...</p>
+                    </div>
+                    
+                    <div id="students-grid" class="students-grid"></div>
+                </section>
+
+                <!-- Connections Tab -->
+                <section id="connections" class="tab-content hidden">
+                    <div class="content-header">
+                        <h2>My Connections</h2>
+                    </div>
+                    
+                    <div class="connections-stats">
+                        <div class="connection-stat">
+                            <i class="fas fa-users"></i>
+                            <span id="total-connections">0</span>
+                            <p>Total Connections</p>
+                        </div>
+                        <div class="connection-stat">
+                            <i class="fas fa-user-plus"></i>
+                            <span id="pending-requests">0</span>
+                            <p>Pending Requests</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-buttons">
+                        <button class="tab-button active" data-tab="active-connections">Active Connections</button>
+                        <button class="tab-button" data-tab="pending-connections">Pending Requests</button>
+                    </div>
+                    
+                    <div id="connections-tab-content">
+                        <div id="active-connections" class="connection-tab-pane active">
+                            <div id="connections-container" class="connections-container">
+                                <p class="empty-state">
+                                    <i class="fas fa-user-friends"></i>
+                                    No connections yet. Start browsing to connect with peers!
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div id="pending-connections" class="connection-tab-pane">
+                            <div id="pending-container" class="connections-container">
+                                <p class="empty-state">
+                                    <i class="fas fa-paper-plane"></i>
+                                    No pending connection requests
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden">
+        <div class="toast-content">
+            <i class="fas fa-check-circle"></i>
+            <span id="toast-message"></span>
+        </div>
+        <button class="toast-close" aria-label="Close notification">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
