@@ -567,7 +567,7 @@ a:hover {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: 48px 0;
+    padding: 48px 24px 48px 48px;
 }
 
 .welcome-image {
@@ -579,9 +579,10 @@ a:hover {
 
 .welcome-text {
     flex: 1;
-    padding: var(--space-8);
+    padding: 48px 48px 48px 24px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     text-align: center;
 }
@@ -1736,6 +1737,14 @@ textarea {
         box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
     }
 
+    .welcome-text{
+        padding: 48px 24px 24px 24px;
+    }
+
+    .welcome-graphic{
+        padding: 24px 24px 48px 24px;
+    }
+
     .sidebar.active {
         transform: translateX(0);
     }
@@ -1760,6 +1769,10 @@ textarea {
     /* Small Tablet / Large Mobile Styles */
     .content-wrapper {
         padding: var(--space-4);
+    }
+    
+    .welcome-graphic{
+        padding: 24px 12px;
     }
 
     .search-bar {
