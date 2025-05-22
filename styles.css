@@ -1,13 +1,16 @@
 /* ========== BASE STYLES & DESIGN SYSTEM ========== */
 :root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #5b4ba2 100%);
     /* Primary palette */
     --primary-color: #4361ee;
     --primary-light: #738fff;
     --primary-dark: #2c3e94;
     --secondary-color: #3f37c9;
     --danger-color: #e63946;
+    --primary-600: #5a67d8;
 
     /* Light mode colors */
+    --bg-secondary: #f8fafc;
     --text-dark: #2d3748;
     --text-light: #4a5568;
     --text-lighter: #718096;
@@ -52,6 +55,7 @@
 
 /* Dark mode colors */
 .dark-mode {
+    --bg-secondary: #1e293b;
     --text-dark: #f7fafc;
     --text-light: #e2e8f0;
     --text-lighter: #a0aec0;
@@ -93,6 +97,24 @@ body {
     margin: 0 auto;
     padding: 0 var(--space-4);
 }
+
+/* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-gradient);
+            border-radius: var(--radius-full);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-600);
+        }
 
 /* Typography */
 h1,
