@@ -814,7 +814,7 @@ function showToast(message = 'Your action was completed successfully.') {
     
     // Auto-hide after 4 seconds
     setTimeout(() => {
-        // hideToast(id);
+        hideToast(id);
     }, 4000);
     
     return id;
