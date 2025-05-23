@@ -190,14 +190,6 @@ a:hover {
     color: var(--primary-dark);
 }
 
-.hidden {
-    display: none !important;
-}
-
-.show {
-    display: block !important;
-}
-
 /* App Container */
 .app-container {
     display: flex;
