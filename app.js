@@ -128,6 +128,8 @@ navLinks.forEach(link => {
         e.preventDefault();
         const tabId = link.dataset.tab;
         showTab(tabId);
+        sidebar.classList.remove('active');
+        removeOverlay();
     });
 });
 
