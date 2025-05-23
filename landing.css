@@ -127,7 +127,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--space-4) 0;
+    padding: var(--space-4) var(--space-4);
     position: relative;
 }
 
@@ -786,9 +786,9 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .container {
+    /* .container {
         padding: 0 var(--space-4);
-    }
+    } */
 
     .hero {
         padding: var(--space-16) 0;
