@@ -353,6 +353,7 @@ function handleConnect(e) {
         updateConnectionsView();
         addActivity('connection', `You connected with ${student.name}`);
         updateDashboardStats();
+        updateConnectionCounts();
         applyFilters();
     }, 2000);
 }
@@ -463,6 +464,7 @@ function handleDeleteConnection(e) {
         updateConnectionCounts();
         addActivity('connection', `You removed ${student.name} from your connections`);
         updateDashboardStats();
+        displaySuggestedConnections();
         displayStudents(filteredStudents)
     }
 }
@@ -777,17 +779,58 @@ function loadConnections() {
     if (savedConnections) connections = JSON.parse(savedConnections);
 }
 
-function showToast(message) {
-    toastMessage.textContent = message;
-    toast.classList.remove('hidden');
-    toast.classList.add('show');
+// Success Toast JavaScript
+let toastId = 0;
 
+function showToast(message = 'Your action was completed successfully.') {
+    const container = document.getElementById('toast-container');
+    const id = `toast-${++toastId}`;
+    
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.id = id;
+    
+    toast.innerHTML = `
+        <div class="toast-content">
+            <div class="toast-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <div class="toast-text">
+                <div class="toast-message">${message}</div>
+            </div>
+            <button class="toast-close" onclick="hideToast('${id}')" aria-label="Close notification">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="toast-progress"></div>
+    `;
+    
+    container.appendChild(toast);
+    
+    // Trigger show animation
+    requestAnimationFrame(() => {
+        toast.classList.add('show');
+    });
+    
+    // Auto-hide after 4 seconds
     setTimeout(() => {
-        toast.classList.remove('show');
-        setTimeout(() => {
-            toast.classList.add('hidden');
-        }, 300);
-    }, 3000);
+        // hideToast(id);
+    }, 4000);
+    
+    return id;
+}
+
+function hideToast(id) {
+    const toast = document.getElementById(id);
+    if (!toast) return;
+    
+    toast.classList.add('hide');
+    
+    setTimeout(() => {
+        if (toast.parentNode) {
+            toast.parentNode.removeChild(toast);
+        }
+    }, 300);
 }
 
 const styleSheet = document.createElement('style');
@@ -942,11 +985,6 @@ function performGlobalSearch(query) {
 }
 
 // Notifications functionality
-notificationBtn.addEventListener('click', () => {
-    showToast('Notifications feature coming soon!');
-    toggleNotificationsDropdown();
-});
-
 function toggleNotificationsDropdown() {
     const existingDropdown = document.querySelector('.notifications-dropdown');
     if (existingDropdown) {
@@ -1115,6 +1153,7 @@ function handleSuggestedConnect(e) {
         updateConnectionsView();
         addActivity('connection', `You connected with ${student.name}`);
         updateDashboardStats();
+        updateConnectionCounts();
         displaySuggestedConnections();
     }, 2000);
 }
