@@ -1058,15 +1058,10 @@ window.addEventListener('resize', () => {
     }
 });
 
-function updateNotificationBadge(count) {
-    const badge = notificationBtn.querySelector('.badge');
-    if (count > 0) {
-        badge.textContent = count;
-        badge.style.display = 'flex';
-    } else {
-        badge.style.display = 'none';
-    }
-}
+notificationBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleNotificationsDropdown();
+});
 
 function displaySuggestedConnections() {
     if (!currentUser) {
@@ -1157,6 +1152,7 @@ function handleSuggestedConnect(e) {
         updateDashboardStats();
         updateConnectionCounts();
         displaySuggestedConnections();
+        displayStudents(filteredStudents);
     }, 2000);
 }
 
