@@ -347,8 +347,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             `;
     document.head.appendChild(style);
-
-    console.log('🎓 StudentVerse Enhanced - All systems loaded successfully!');
 });
 
 if ('loading' in HTMLImageElement.prototype) {
