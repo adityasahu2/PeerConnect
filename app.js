@@ -204,6 +204,7 @@ function saveProfile(name, collegeId, year, department, bio, skills, projects, p
         addActivity('profile', 'You updated your profile information');
     }
     updateDashboardStats();
+    displayStudents(filteredStudents);
 }
 
 function updateProfileView() {
